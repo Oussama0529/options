@@ -53,7 +53,7 @@ class Produit extends Seeder
                     //A verifieer !! //fcihier excel si c'est ecrit correctement 
 
                     if ($type_produit_name != null)
-                        $type   =   DB::table('diag_produit_types')->where('name', 'LIKE', "%" . $type_produit_name)->first();
+                        $type0   =   DB::table('diag_produit_types')->where('name', 'LIKE', "%" . $type_produit_name)->first();
                     if ($cerfa_name != null)
                         $cerfa  =   DB::table('diag_cerfas')->where('name', 'LIKE', "%" . $cerfa_name)->first();
                     if ($cat_name != null)
@@ -61,11 +61,9 @@ class Produit extends Seeder
                     if ($lot_name != null)
                         $lot    =   DB::table('diag_lots')->where('name', 'LIKE', "%" . $lot_name)->first();
 
-
-                    
                     $a = explode('-', $cat_name);
 
-
+                    
                     $produit_name = trim($name); //Nom complet du produit ~ detail dechet dans le fichier excel 
                     $produit_option_name=$produit_name;
 
@@ -94,7 +92,7 @@ class Produit extends Seeder
                             'name'                  => trim($split_name[0]), //done
                             //'user_id'             =>
                             'cerfa_id'              => !empty($cerfa)   ? $cerfa->id    : null,
-                            //type_produit_id'       => !empty($type)    ? $type->id     : null,
+                            'type_produit_id'       => !empty($type0)    ? $type0->id     : null,
                             'cat_id'                => !empty($cat)     ? $cat->id      : null,
                             'lot_id'                => !empty($lot)     ? $lot->id      : null,
                             'classe'                => str_replace(' ', '', $a[0]),
